@@ -22,11 +22,7 @@ final public class ZKCarousel: UIView,
     public var interval: Double = 1.0
     public var delegate: ZKCarouselDelegate?
     
-    public var slides: [ZKCarouselSlide] = [] {
-        didSet {
-            updateUI()
-        }
-    }
+    public var slides: [ZKCarouselSlide] = []
     
     /// Calculates the index of the currently visible ZKCarouselCell
     public var currentlyVisibleIndex: Int? {
@@ -112,11 +108,12 @@ final public class ZKCarousel: UIView,
                                   scrollPosition: .centeredHorizontally)
     }
     
-    private func updateUI() {
+    private func updateUI(completion: @escaping () -> Void) {
         DispatchQueue.main.async {
             self.collectionView.reloadData()
             self.pageControl.numberOfPages = self.slides.count
             self.pageControl.size(forNumberOfPages: self.slides.count)
+            completion()
         }
     }
     

@@ -1,16 +1,25 @@
 PODS:
-  - ZKCarousel (0.2.1)
+  - SDWebImage (5.21.1):
+    - SDWebImage/Core (= 5.21.1)
+  - SDWebImage/Core (5.21.1)
+  - ZKCarousel (1.1.0):
+    - SDWebImage (~> 5.21.1)
 
 DEPENDENCIES:
   - ZKCarousel (from `../`)
+
+SPEC REPOS:
+  trunk:
+    - SDWebImage
 
 EXTERNAL SOURCES:
   ZKCarousel:
     :path: "../"
 
 SPEC CHECKSUMS:
-  ZKCarousel: 2cb2a9bbfebfa50ff7e240ae061890cdc3ee3cd8
+  SDWebImage: f29024626962457f3470184232766516dee8dfea
+  ZKCarousel: d9950d8ae38753bcfa85da4655e59264123e51cc
 
-PODFILE CHECKSUM: ac6304db421a3940838a5756b877b1da72952809
+PODFILE CHECKSUM: 8a8a906d9fa72fe2a6e69b1a7d3a8994a38a84c4
 
-COCOAPODS: 1.7.2
+COCOAPODS: 1.16.2

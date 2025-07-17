@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 public class ZKCarouselCell: UICollectionViewCell {
     
@@ -96,7 +97,12 @@ public class ZKCarouselCell: UICollectionViewCell {
     }
     
     private func parseData(forSlide slide: ZKCarouselSlide) {
-        imageView.image = slide.image
+        if let image = slide.image {
+            imageView.image = image
+        } else if let imageURL = slide.imageURL {
+            imageView.sd_setImage(with: imageURL, placeholderImage: slide.placeHolderImage)
+        }
+
         titleLabel.text = slide.title
         descriptionLabel.text = slide.description
     }
