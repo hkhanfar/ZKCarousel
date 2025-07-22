@@ -39,7 +39,6 @@ public class ZKCarouselCell: UICollectionViewCell {
         label.adjustsFontSizeToFitWidth = true
         label.font = UIFont.boldSystemFont(ofSize: 20)
         label.textColor = .white
-        label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -48,7 +47,6 @@ public class ZKCarouselCell: UICollectionViewCell {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14)
         label.textColor = .white
-        label.textAlignment = .center
         label.numberOfLines = 0
         label.backgroundColor = .clear
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -84,16 +82,17 @@ public class ZKCarouselCell: UICollectionViewCell {
         imageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
         
         contentView.addSubview(descriptionLabel)
-        descriptionLabel.topAnchor.constraint(equalTo: contentView.centerYAnchor, constant: 32).isActive = true
         descriptionLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 16).isActive = true
         descriptionLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -16).isActive = true
-        descriptionLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16).isActive = true
+        descriptionLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5).isActive = true
    
         contentView.addSubview(titleLabel)
         titleLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 16).isActive = true
         titleLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -16).isActive = true
-        titleLabel.bottomAnchor.constraint(equalTo: descriptionLabel.topAnchor, constant: -8).isActive = true
-        titleLabel.heightAnchor.constraint(equalToConstant: 45).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 15).isActive = true
+        
+        descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 15).isActive = true
+
     }
     
     private func parseData(forSlide slide: ZKCarouselSlide) {
@@ -103,8 +102,8 @@ public class ZKCarouselCell: UICollectionViewCell {
             imageView.sd_setImage(with: imageURL, placeholderImage: slide.placeHolderImage)
         }
 
-        titleLabel.text = slide.title
-        descriptionLabel.text = slide.description
+        titleLabel.attributedText = slide.title
+        descriptionLabel.attributedText = slide.description
     }
 
 }

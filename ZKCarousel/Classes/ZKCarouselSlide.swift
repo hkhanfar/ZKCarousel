@@ -11,12 +11,12 @@ public struct ZKCarouselSlide {
     public var image : UIImage?
     public var imageURL : URL?
     public var placeHolderImage : UIImage?
-    public var title : String?
-    public var description: String?
+    public var title : NSAttributedString?
+    public var description: NSAttributedString?
     
     public init(image: UIImage?,
-                title: String? = nil,
-                description: String? = nil) {
+                title: NSAttributedString? = nil,
+                description: NSAttributedString? = nil) {
         
         self.image = image
         self.title = title
@@ -25,8 +25,8 @@ public struct ZKCarouselSlide {
     
     public init(imageURL: URL,
                 placeHolderImage: UIImage,
-                title: String? = nil,
-                description: String? = nil) {
+                title: NSAttributedString? = nil,
+                description: NSAttributedString? = nil) {
         
         self.imageURL = imageURL
         self.placeHolderImage = placeHolderImage

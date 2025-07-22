@@ -10,6 +10,7 @@ import UIKit
 
 @objc public protocol ZKCarouselDelegate: AnyObject {
     func carouselDidScroll()
+    func didTapItem(index: Int)
 }
 
 final public class ZKCarousel: UIView,
@@ -95,6 +96,12 @@ final public class ZKCarousel: UIView,
     }
     
     @objc private func tapGestureHandler(tap: UITapGestureRecognizer?) {
+
+        self.delegate?.didTapItem(index: self.currentlyVisibleIndex ?? 0)
+    }
+    
+    @objc private func timerAction() {
+        
         var visibleRect = CGRect()
         visibleRect.origin = collectionView.contentOffset
         visibleRect.size = collectionView.bounds.size
@@ -108,7 +115,7 @@ final public class ZKCarousel: UIView,
                                   scrollPosition: .centeredHorizontally)
     }
     
-    private func updateUI(completion: @escaping () -> Void) {
+    public func updateUI(completion: @escaping () -> Void) {
         DispatchQueue.main.async {
             self.collectionView.reloadData()
             self.pageControl.numberOfPages = self.slides.count
@@ -121,7 +128,7 @@ final public class ZKCarousel: UIView,
     public func start() {
         timer = Timer.scheduledTimer(timeInterval: interval,
                                      target: self,
-                                     selector: #selector(tapGestureHandler(tap:)),
+                                     selector: #selector(self.timerAction),
                                      userInfo: nil,
                                      repeats: true)
         timer.fire()
